@@ -1,21 +1,15 @@
 const express = require('express')
 const router = express.Router()
 
+const sampleController = require('../controller/sampleController')
 
-router.get('/', function (req, res) {
-    res.send('get')
-})
 
-router.post('/', function (req, res) {
-    res.send('post')
-})
+router.get('/', sampleController.methodGet)
 
-router.put('/:id', function (req, res) {
-    res.send('put')
-})
+router.post('/', sampleController.methodPost)
 
-router.delete('/:id', function (req, res) {
-    res.send("delete")
-})
+router.put('/:id', sampleController.methodPut)
+
+router.delete('/:id', sampleController.methodDelete)
 
 module.exports = router
