@@ -2,10 +2,42 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-app.get('/', (req, res) => res.send('ini route get!'))
-app.post('/post', (req, res) => res.send('ini route post!'))
-app.put('/put', (req, res) => res.send('ini route put!'))
-app.delete('/delete', (req, res) => res.send('ini route delete!'))
+app.use(express.json())
+app.use(express.urlencoded({
+    extended: true
+}))
+
+app.get('/belajar/:id/:nama', function (req, res) {
+    const id = req.params.id
+    const nama = req.params.nama
+
+    let respon = {
+        id: id,
+        nama: nama
+    }
+
+    res.send(respon)
+})
+
+app.post('/belajar', function (req, res) {
+    res.send(req.body)
+})
+
+app.put('/belajar/:id', function (req, res) {
+    const id = req.params.id
+    let respon = {
+        id: id,
+        body: req.body
+    }
+    res.send(respon)
+})
+
+app.delete('/belajar/:id', function (req, res) {
+    res.send(req.params.id)
+})
+
+
+
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
