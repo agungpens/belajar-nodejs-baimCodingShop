@@ -18,4 +18,5 @@ router.put('/foods/:id', foodsController.methodPut)
 router.delete('/foods/:id', foodsController.methodDelete)
 
 router.post('/foods/upload', foodsController.methodUploadFoods)
+router.post('/foods/search', foodsController.methodGetByQuery)
 module.exports = router

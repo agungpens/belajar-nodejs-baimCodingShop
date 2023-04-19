@@ -2,7 +2,47 @@ const foodsModel = require('../models/foodsModel')
 const potosModel = require('../models/potosModel')
 const fileUpload = require('../helper/fileUpload')
 
+const { Op } = require('sequelize');
 
+// Method GetData By Query SQL
+
+const methodGetByQuery = async (req, res) => {
+    const param1 = req.body.namamakanan
+    const param2 = req.body.daerah
+    try {
+
+
+        const getByQuery = await foodsModel.findAll({
+            attributes: [['namamakanan', 'nama'], ['deskripsi', 'keterangan']],
+            //where: {
+            // [Op.or]: [
+            //     { namamakanan: param1 },
+            //     { daerah: param2 },
+            // ]
+            // [Op.and]: [
+            //     { namamakanan: param1 },
+            //     { daerah: param2 },
+            // ]
+            // namamakanan: {
+            //     [Op.like]: `%${param1}%`
+            // }
+            //}
+            order: [['namamakanan', 'asc']]
+        })
+
+        if (getByQuery.length > 0) {
+            res.json(getByQuery)
+        }
+        else {
+            res.status(400).send('Data Tidak Ditemukan')
+        }
+
+    } catch (error) {
+        return res.status(400).send('Erorr masehh')
+    }
+}
+
+// Method Upload Data File
 const methodUploadFoods = async (req, res) => {
     try {
         // ini utnuk upload file
@@ -113,5 +153,6 @@ module.exports = {
     methodGetById,
     methodPut,
     methodDelete,
-    methodUploadFoods
+    methodUploadFoods,
+    methodGetByQuery
 }

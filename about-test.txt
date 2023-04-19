@@ -1,0 +1,8 @@
+- buat folder projectnya
+- install express(framework-nodejs), nodemon(auto-reload), mysql2 sequelize(databaseMySql) , multer(uploadFile)
+- buat database di mysql
+- buat folder config , routes , controller , models , helper , resources/uploads(menyimpan file)
+- buat file config.json dan db.js untuk setting koneksi database mysql
+- buat file index.js untuk build servernya menggunakan express
+- setting nodemon nya ke file index.js
+- 
